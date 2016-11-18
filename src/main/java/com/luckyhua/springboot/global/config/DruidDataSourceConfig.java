@@ -49,7 +49,7 @@ public class DruidDataSourceConfig implements EnvironmentAware {
         datasource.setTestOnReturn(Boolean.parseBoolean(propertyResolver.getProperty("test-on-return")));
         datasource.setTestWhileIdle(Boolean.parseBoolean(propertyResolver.getProperty("test-while-idle")));
         try {
-			datasource.setFilters("stat,wall");
+			datasource.setFilters(propertyResolver.getProperty("filters"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

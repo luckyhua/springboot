@@ -41,18 +41,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="menu" />
 		<table tableName="user" />
-		<table tableName="app_users" />
-		<table tableName="app_version" />
-		<table tableName="commend" />
-		<table tableName="user_log" domainObjectName="UserLog" />
-		<table tableName="users" domainObjectName="Users" />
-		<table tableName="css" domainObjectName="Css" />
-		<table tableName="res" domainObjectName="Res" />
-		<table tableName="res_link" domainObjectName="ResLink" />
-		<table tableName="alert" domainObjectName="Alert" />
-		<table tableName="alertType" domainObjectName="AlertType" />
 
 	</context>
 </generatorConfiguration>  
