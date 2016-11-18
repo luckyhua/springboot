@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LogSupport">
+    <option name="logConfigurations">
+      <ProjectLogConfigurations>
+        <option name="defaultLogConfiguration">
+          <DefaultLogConfiguration>
+            <option name="defaultFrameworkName" value="slf4j" />
+            <option name="logIdName" value="ZGH" />
+            <option name="logIdSequenceValue" value="10020" />
+          </DefaultLogConfiguration>
+        </option>
+      </ProjectLogConfigurations>
+    </option>
+    <option name="logIds">
+      <list>
+        <LogId>
+          <option name="name" value="Default" />
+        </LogId>
+        <LogId>
+          <option name="format" value="custom" />
+          <option name="minValue" value="10000" />
+          <option name="name" value="ZGH" />
+          <option name="prefix" value="ZGH" />
+        </LogId>
+      </list>
+    </option>
+  </component>
+</project>

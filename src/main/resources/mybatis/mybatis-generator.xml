@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="[e|E]xample$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库连接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.1.146:3306/springBoot"
+			userId="root"
+			password="admin">
+		</jdbcConnection>
+
+		<!-- generate Model -->
+		<javaModelGenerator targetPackage="wang.raye.springBoot.model" targetProject="${entity.target.dir}">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 自动生成xml（但是好像一直没有生成功，反正也不用xml） -->
+		<!--<sqlMapGenerator  targetPackage="wang.raye.springBoot.model.mapper" targetProject="${dao.resources.dir}">-->
+			<!--<property name="enableSubPackages" value="true" />-->
+		<!--</sqlMapGenerator>-->
+
+		<!-- 自动生成mapper接口, 可以是 ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER(不知道) -->
+		<javaClientGenerator type="ANNOTATEDMAPPER"
+			targetPackage="wang.raye.springBoot.model.mapper"
+			 implementationPackage="wang.raye.springBoot.model.mapper.impl"
+			targetProject="${entity.target.dir}">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="menu" />
+		<table tableName="user" />
+		<table tableName="app_users" />
+		<table tableName="app_version" />
+		<table tableName="commend" />
+		<table tableName="user_log" domainObjectName="UserLog" />
+		<table tableName="users" domainObjectName="Users" />
+		<table tableName="css" domainObjectName="Css" />
+		<table tableName="res" domainObjectName="Res" />
+		<table tableName="res_link" domainObjectName="ResLink" />
+		<table tableName="alert" domainObjectName="Alert" />
+		<table tableName="alertType" domainObjectName="AlertType" />
+
+	</context>
+</generatorConfiguration>  
