@@ -29,10 +29,10 @@ public class DruidDataSourceConfig implements EnvironmentAware {
     public void setEnvironment(Environment env) {
         this.propertyResolver = new RelaxedPropertyResolver(env, "spring.datasource.");
     }
-    
+
     @Bean
     public DataSource dataSource() {
-        log.info("ZGH10000: inject druid into spring boot container .");
+        log.info("ZGH10000: inject druid database connection pool into spring boot container .");
         DruidDataSource datasource = new DruidDataSource();
         datasource.setUrl(propertyResolver.getProperty("url"));
         datasource.setDriverClassName(propertyResolver.getProperty("driver-class-name"));
@@ -43,6 +43,11 @@ public class DruidDataSourceConfig implements EnvironmentAware {
         datasource.setMaxWait(Long.valueOf(propertyResolver.getProperty("max-wait")));
         datasource.setMaxActive(Integer.valueOf(propertyResolver.getProperty("max-active")));
         datasource.setMinEvictableIdleTimeMillis(Long.valueOf(propertyResolver.getProperty("min-evictable-idle-time-millis")));
+        datasource.setTimeBetweenEvictionRunsMillis(Long.valueOf(propertyResolver.getProperty("time-between-eviction-runs-millis")));
+        datasource.setPoolPreparedStatements(Boolean.parseBoolean(propertyResolver.getProperty("poolPreparedStatements")));
+        datasource.setTestOnBorrow(Boolean.parseBoolean(propertyResolver.getProperty("test-on-borrow")));
+        datasource.setTestOnReturn(Boolean.parseBoolean(propertyResolver.getProperty("test-on-return")));
+        datasource.setTestWhileIdle(Boolean.parseBoolean(propertyResolver.getProperty("test-while-idle")));
         try {
 			datasource.setFilters("stat,wall");
 		} catch (SQLException e) {
