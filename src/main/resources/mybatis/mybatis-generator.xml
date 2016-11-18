@@ -17,13 +17,13 @@
 
 		<!-- 数据库连接 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://192.168.1.146:3306/springBoot"
+			connectionURL="jdbc:mysql://192.168.1.146:3306/springboot"
 			userId="root"
 			password="admin">
 		</jdbcConnection>
 
 		<!-- generate Model -->
-		<javaModelGenerator targetPackage="wang.raye.springBoot.model" targetProject="${entity.target.dir}">
+		<javaModelGenerator targetPackage="com.luckyhua.springboot.model" targetProject="${entity.target.dir}">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
@@ -35,8 +35,8 @@
 
 		<!-- 自动生成mapper接口, 可以是 ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER(不知道) -->
 		<javaClientGenerator type="ANNOTATEDMAPPER"
-			targetPackage="wang.raye.springBoot.model.mapper"
-			 implementationPackage="wang.raye.springBoot.model.mapper.impl"
+			targetPackage="com.luckyhua.springboot.dao.mapper"
+			 implementationPackage="com.luckyhua.springboot.dao.mapper.impl"
 			targetProject="${entity.target.dir}">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
