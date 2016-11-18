@@ -9,14 +9,12 @@ import java.util.List;
 /**
  * @author luckyhua
  * @date 2016/11/18
- * @description
+ * @description 用户业务层
  */
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
 
-
-    @Override
     public boolean add(User user) {
         return false;
     }
