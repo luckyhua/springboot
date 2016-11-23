@@ -5,6 +5,9 @@ import com.luckyhua.springboot.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +24,7 @@ import java.util.List;
 @RequestMapping("/demo/user")
 public class UserController {
 
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     @Resource(name = "userService")
     private UserService userService;
 
@@ -30,7 +34,8 @@ public class UserController {
             @ApiImplicitParam(name = "username", paramType = "query", dataType = "string"),
             @ApiImplicitParam(name = "psw", paramType = "query", dataType = "string")
     })
-    public User create(User user) {
+    public User create(@RequestBody User user) {
+        log.info("ZGH10040: user = {}", user);
         userService.add(user);
         return user;
     }
