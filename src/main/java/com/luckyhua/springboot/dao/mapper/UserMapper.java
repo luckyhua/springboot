@@ -56,9 +56,9 @@ public interface UserMapper {
      */
     @Insert({
         "insert into user (name, age, ",
-        "birthday)",
+        "birthday, real_name)",
         "values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, ",
-        "#{birthday,jdbcType=TIMESTAMP})"
+        "#{birthday,jdbcType=TIMESTAMP}, #{realName,jdbcType=VARCHAR})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(User record);
@@ -84,7 +84,8 @@ public interface UserMapper {
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="age", property="age", jdbcType=JdbcType.INTEGER),
-        @Result(column="birthday", property="birthday", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="birthday", property="birthday", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="real_name", property="realName", jdbcType=JdbcType.VARCHAR)
     })
     List<User> selectByExample(UserExample example);
 
@@ -96,7 +97,7 @@ public interface UserMapper {
      */
     @Select({
         "select",
-        "id, name, age, birthday",
+        "id, name, age, birthday, real_name",
         "from user",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -104,7 +105,8 @@ public interface UserMapper {
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="age", property="age", jdbcType=JdbcType.INTEGER),
-        @Result(column="birthday", property="birthday", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="birthday", property="birthday", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="real_name", property="realName", jdbcType=JdbcType.VARCHAR)
     })
     User selectByPrimaryKey(Integer id);
 
@@ -145,7 +147,8 @@ public interface UserMapper {
         "update user",
         "set name = #{name,jdbcType=VARCHAR},",
           "age = #{age,jdbcType=INTEGER},",
-          "birthday = #{birthday,jdbcType=TIMESTAMP}",
+          "birthday = #{birthday,jdbcType=TIMESTAMP},",
+          "real_name = #{realName,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);

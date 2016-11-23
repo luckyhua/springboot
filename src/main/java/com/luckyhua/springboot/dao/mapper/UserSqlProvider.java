@@ -58,6 +58,10 @@ public class UserSqlProvider {
             sql.VALUES("birthday", "#{birthday,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getRealName() != null) {
+            sql.VALUES("real_name", "#{realName,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -77,6 +81,7 @@ public class UserSqlProvider {
         sql.SELECT("name");
         sql.SELECT("age");
         sql.SELECT("birthday");
+        sql.SELECT("real_name");
         sql.FROM("user");
         applyWhere(sql, example, false);
         
@@ -116,6 +121,10 @@ public class UserSqlProvider {
             sql.SET("birthday = #{record.birthday,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getRealName() != null) {
+            sql.SET("real_name = #{record.realName,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -134,6 +143,7 @@ public class UserSqlProvider {
         sql.SET("name = #{record.name,jdbcType=VARCHAR}");
         sql.SET("age = #{record.age,jdbcType=INTEGER}");
         sql.SET("birthday = #{record.birthday,jdbcType=TIMESTAMP}");
+        sql.SET("real_name = #{record.realName,jdbcType=VARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -160,6 +170,10 @@ public class UserSqlProvider {
         
         if (record.getBirthday() != null) {
             sql.SET("birthday = #{birthday,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getRealName() != null) {
+            sql.SET("real_name = #{realName,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");
