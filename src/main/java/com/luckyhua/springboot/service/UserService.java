@@ -16,7 +16,7 @@ public interface UserService {
      * @param user 用户对象
      * @return 是否添加成功
      */
-    boolean add(User user);
+    void add(User user);
 
     /**
      * 查询所有用户

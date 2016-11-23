@@ -8,10 +8,10 @@
 	<context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
 
 		<!--mybaits代码生成器生成Example类替换成Criteria -->
-		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
-			<property name="searchString" value="[e|E]xample$" />
-			<property name="replaceString" value="Criteria" />
-		</plugin>
+		<!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
+			<!--<property name="searchString" value="[e|E]xample$" />-->
+			<!--<property name="replaceString" value="Criteria" />-->
+		<!--</plugin>-->
 
 		<!--下面的配置使得生成的model中可以使用数据库中的Comment对字段进行注释-->
 		<commentGenerator>
@@ -26,12 +26,15 @@
 			password="admin">
 		</jdbcConnection>
 
+		<!--默认false
+           Java type resolver will always use java.math.BigDecimal if the database column is of type DECIMAL or NUMERIC.
+         -->
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 
 		<!-- generate model -->
-		<javaModelGenerator targetPackage="com.luckyhua.springboot.model" targetProject="${entity.target.dir}">
+		<javaModelGenerator targetPackage="com.luckyhua.springboot.model" targetProject="src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
@@ -40,11 +43,12 @@
 		<javaClientGenerator type="ANNOTATEDMAPPER"
 			targetPackage="com.luckyhua.springboot.dao.mapper"
 			 implementationPackage="com.luckyhua.springboot.dao.mapper.impl"
-			targetProject="${entity.target.dir}">
+			targetProject="src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="user" />
+		<!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
+		<table tableName="user" domainObjectName="User"/>
 
 	</context>
 </generatorConfiguration>  
