@@ -16,11 +16,7 @@ import java.util.List;
  * @date 2016/11/23
  * @description 反射工具类，提供一些Java基本的反射功能
  */
-public class ReflectUtils {
-
-    private ReflectUtils() {
-
-    }
+public abstract class ReflectUtils {
 
     public static final Class<?>[] EMPTY_PARAM_TYPES = new Class<?>[0];
     public static final Object[] EMPTY_PARAMS = new Object[0];
