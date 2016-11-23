@@ -14,12 +14,14 @@
 		<!--</plugin>-->
 		<!--mybaits插件生成toString方法 -->
 		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-		<!--<plugin type="com.luckyhua.springboot.global.mybaits.PaginationPlugin" />-->
+		<!--<plugin type="PaginationPlugin" />-->
 
 
 		<!--下面的配置使得生成的model中可以使用数据库中的Comment对字段进行注释-->
+		<!--<commentGenerator type="org.mybatis.generator.internal.CustomCommentGenerator">-->
 		<commentGenerator>
-			<property name="suppressAllComments" value="false" />
+			<property name="javaFileEncoding" value="UTF-8" />
+			<property name="suppressAllComments" value="true" />
 			<property name="suppressDate" value="true" />
 		</commentGenerator>
 
@@ -38,15 +40,15 @@
 		</javaTypeResolver>
 
 		<!-- generate model -->
-		<javaModelGenerator targetPackage="com.luckyhua.springboot.model" targetProject="src\main\java">
+		<javaModelGenerator targetPackage="com.luckyhua.boot.model" targetProject="src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!-- generate mapper, 可以是 ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER(不知道) -->
 		<javaClientGenerator type="ANNOTATEDMAPPER"
-			targetPackage="com.luckyhua.springboot.dao.mapper"
-			 implementationPackage="com.luckyhua.springboot.dao.mapper.impl"
+			targetPackage="com.luckyhua.boot.dao.mapper"
+			 implementationPackage="com.luckyhua.boot.dao.mapper.impl"
 			targetProject="src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>

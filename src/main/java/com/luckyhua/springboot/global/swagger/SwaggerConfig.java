@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * @author luckyhua
  * @date 2016/11/18
- * @description Swagger generate api document config
+ * @description Swagger generate api document database
  */
 @Configuration
 @EnableSwagger2

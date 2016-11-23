@@ -1,4 +1,4 @@
-package com.luckyhua.springboot.global.mybaits;
+package com.luckyhua.springboot.common.mybaits.generator;
 
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;

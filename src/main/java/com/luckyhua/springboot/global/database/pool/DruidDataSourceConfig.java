@@ -1,4 +1,4 @@
-package com.luckyhua.springboot.global.config;
+package com.luckyhua.springboot.global.database.pool;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.slf4j.Logger;
