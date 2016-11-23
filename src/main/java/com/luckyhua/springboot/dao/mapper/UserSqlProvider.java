@@ -46,10 +46,6 @@ public class UserSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("user");
         
-        if (record.getId() != null) {
-            sql.VALUES("id", "#{id,jdbcType=INTEGER}");
-        }
-        
         if (record.getName() != null) {
             sql.VALUES("name", "#{name,jdbcType=VARCHAR}");
         }

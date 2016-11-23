@@ -42,8 +42,8 @@ public class UserController {
 
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ApiOperation(notes = "查询所有用户", value = "查询所有用户列表", httpMethod = "GET")
-    public List<User> get() {
-        return userService.findAll();
+    public List<User> get(Integer offset, Integer limit) {
+        return userService.findAll(offset, limit);
     }
 
 }

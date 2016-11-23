@@ -28,8 +28,9 @@ public class UserServiceImpl implements UserService {
         userMapper.insertSelective(user);
     }
 
-    @Override
-    public List<User> findAll() {
-        return userMapper.selectByExample(new UserExample());
+    public List<User> findAll(Integer offset, Integer limit) {
+        UserExample userExample = new UserExample();
+//        userExample.set
+        return userMapper.selectByExample(userExample);
     }
 }

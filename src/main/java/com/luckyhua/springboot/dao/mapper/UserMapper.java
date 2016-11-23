@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -54,11 +55,12 @@ public interface UserMapper {
      * @mbg.generated
      */
     @Insert({
-        "insert into user (id, name, ",
-        "age, birthday)",
-        "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
-        "#{age,jdbcType=INTEGER}, #{birthday,jdbcType=TIMESTAMP})"
+        "insert into user (name, age, ",
+        "birthday)",
+        "values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, ",
+        "#{birthday,jdbcType=TIMESTAMP})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(User record);
 
     /**
@@ -68,6 +70,7 @@ public interface UserMapper {
      * @mbg.generated
      */
     @InsertProvider(type=UserSqlProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(User record);
 
     /**

@@ -5,13 +5,17 @@
 
 <generatorConfiguration>
 
-	<context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+	<context id="MBG" targetRuntime="MyBatis3" defaultModelType="flat">
 
 		<!--mybaits代码生成器生成Example类替换成Criteria -->
 		<!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
 			<!--<property name="searchString" value="[e|E]xample$" />-->
 			<!--<property name="replaceString" value="Criteria" />-->
 		<!--</plugin>-->
+		<!--mybaits插件生成toString方法 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<!--<plugin type="com.luckyhua.springboot.global.mybaits.PaginationPlugin" />-->
+
 
 		<!--下面的配置使得生成的model中可以使用数据库中的Comment对字段进行注释-->
 		<commentGenerator>
@@ -48,7 +52,9 @@
 		</javaClientGenerator>
 
 		<!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
-		<table tableName="user" domainObjectName="User"/>
+		<table tableName="user" domainObjectName="User">
+			<generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
 
 	</context>
 </generatorConfiguration>  

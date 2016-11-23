@@ -22,6 +22,6 @@ public interface UserService {
      * 查询所有用户
      * @return 返回用户列表
      */
-    List<User> findAll();
+    List<User> findAll(Integer offset, Integer limit);
 
 }
