@@ -66,8 +66,8 @@ public class ResponseUtils {
      * @param fields
      */
     public void putBeanData(Object bean, String ...fields){
-        String key = ResultDataManage.getBeanName(bean);
-        Map<String, Object> values = ResultDataManage.getValues(bean, fields);
+        String key = ResultDataManager.getBeanName(bean);
+        Map<String, Object> values = ResultDataManager.getValues(bean, fields);
         this.data.put(key, values);
     }
 
@@ -85,11 +85,11 @@ public class ResponseUtils {
         }
 
         if(fields==null||fields.length==0){
-            ResultDataManage.initIntValue(bean);
+            ResultDataManager.initIntValue(bean);
             data.put(key, bean);
             return;
         }
-        Map<String, Object> values = ResultDataManage.getValues(bean, fields);
+        Map<String, Object> values = ResultDataManager.getValues(bean, fields);
         data.put(key, values);
     }
 
@@ -121,7 +121,7 @@ public class ResponseUtils {
                 retData.add(values);
                 continue;
             }
-            Map<String, Object> values = ResultDataManage.getValues(bean, inFields);
+            Map<String, Object> values = ResultDataManager.getValues(bean, inFields);
             retData.add(values);
         }
         data.put(key, retData);
@@ -135,13 +135,13 @@ public class ResponseUtils {
      */
     @Deprecated
     public void putBeanDataExcludeFields(Object bean, String ...excludeFields){
-        String key = ResultDataManage.getBeanName(bean);
-        Map<String, Object> values = ResultDataManage.getValuesExcludeFields(bean, excludeFields);
+        String key = ResultDataManager.getBeanName(bean);
+        Map<String, Object> values = ResultDataManager.getValuesExcludeFields(bean, excludeFields);
         data.put(key, values);
     }
 
     public void putBeanDataAll(Object bean){
-        String key = ResultDataManage.getBeanName(bean);
+        String key = ResultDataManager.getBeanName(bean);
         data.put(key, bean);
     }
 

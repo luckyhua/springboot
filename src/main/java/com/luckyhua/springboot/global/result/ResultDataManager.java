@@ -12,7 +12,7 @@ import java.util.Map;
  * @date 2016/11/24
  * @description 返回结果数据管理，data filter or handle
  */
-public class ResultDataManage {
+public class ResultDataManager {
 
     /**
      * 获取javaBean的名称
