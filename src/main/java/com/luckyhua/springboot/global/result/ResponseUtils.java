@@ -1,5 +1,6 @@
 package com.luckyhua.springboot.global.result;
 
+import com.luckyhua.springboot.enums.PublicEnums;
 import com.luckyhua.springboot.enums.ResultEnums;
 
 import java.util.ArrayList;
@@ -22,6 +23,11 @@ public class ResponseUtils {
      * 返回数据
      */
     private Map<String,Object> data = new HashMap<>();
+
+    public ResponseUtils() {
+        this.code = PublicEnums.SUCCESS.getCode();
+        this.msg = PublicEnums.SUCCESS.getMsg();
+    }
 
     public ResponseUtils(ResultEnums resultEnums) {
         this.code = resultEnums.getCode();

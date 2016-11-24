@@ -1,6 +1,4 @@
-package com.luckyhua.springboot.enums.global;
-
-import com.luckyhua.springboot.enums.ResultEnums;
+package com.luckyhua.springboot.enums;
 
 /**
  * @author luckyhua
@@ -9,6 +7,7 @@ import com.luckyhua.springboot.enums.ResultEnums;
  */
 public enum PublicEnums implements ResultEnums {
 
+    SUCCESS(200, "请求成功!"),
     USER_NO_LOGIN(1000, "请先登录后再操作!"),
     PARAMS_IS_NULL(1002, "参数不能为空!");
 

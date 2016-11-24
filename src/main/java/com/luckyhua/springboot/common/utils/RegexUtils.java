@@ -16,10 +16,13 @@ public class RegexUtils {
     public static final String IP_REGEX = "^((?:(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(?:25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))$";
 
     /**
-     * 匹配手机号码的正则表达式
-     * <br>支持130——139、150——153、155——159、180、183、185、186、188、189号段
+     * 手机号码:
+     * 13[0-9], 14[5,7], 15[0, 1, 2, 3, 5, 6, 7, 8, 9], 17[0, 1, 6, 7, 8], 18[0-9]
+     * 移动号段: 134,135,136,137,138,139,147,150,151,152,157,158,159,170,178,182,183,184,187,188
+     * 联通号段: 130,131,132,145,155,156,170,171,175,176,185,186
+     * 电信号段: 133,149,153,170,173,177,180,181,189
      */
-    public static final String PHONE_NUMBER_REGEX = "^1{1}(3{1}\\d{1}|5{1}[012356789]{1}|8{1}[035689]{1})\\d{8}$";
+    public static final String MOBILE_NUMBER_REGEX = "^1(3[0-9]|4[57]|5[0-35-9]|7[0135678]|8[0-9])\\\\d{8}$";
 
     /**
      * 匹配邮箱的正则表达式
@@ -36,6 +39,11 @@ public class RegexUtils {
      * 匹配正整数的正则表达式，个数限制为一个或多个
      */
     public static final String POSITIVE_INTEGER_REGEX = "^\\d+$";
+
+    /**
+     * 电话号码的正则表达式
+     */
+    public static final String TEL_PHONE_REGEX = "^(0\\\\d{2}-\\\\d{8}(-\\\\d{1,4})?)|(0\\\\d{3}-\\\\d{7,8}(-\\\\d{1,4})?)$";
 
     /**
      * 匹配身份证号的正则表达式
@@ -66,8 +74,17 @@ public class RegexUtils {
      * @param text 给定的字符串
      * @return true：是
      */
-    public static boolean isMobilePhoneNumber(String text){
-        return text.matches(PHONE_NUMBER_REGEX);
+    public static boolean isMobileNumber(String text){
+        return text.matches(MOBILE_NUMBER_REGEX);
+    }
+
+    /**
+     * 匹配给定的字符串是否是一个电话号码
+     * @param text 给定的字符串
+     * @return true：是
+     */
+    public static boolean isTelPhone(String text) {
+        return text.matches(TEL_PHONE_REGEX);
     }
 
     /**
