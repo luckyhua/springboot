@@ -5,7 +5,7 @@ package com.luckyhua.springboot.enums;
  * @date 2016/11/24
  * @description 全局枚举接口
  */
-public interface ExceptionEnums {
+public interface ResultEnums {
 
     public int getCode();
 

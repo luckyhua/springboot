@@ -1,6 +1,6 @@
 package com.luckyhua.springboot.global.exception;
 
-import com.luckyhua.springboot.enums.ExceptionEnums;
+import com.luckyhua.springboot.enums.ResultEnums;
 
 /**
  * @author luckyhua
@@ -9,20 +9,21 @@ import com.luckyhua.springboot.enums.ExceptionEnums;
  */
 public class ResponseException extends RuntimeException {
 
-    private ExceptionEnums exceptionEnums;
+    private ResultEnums resultEnums;
 
-    public ExceptionEnums getExceptionEnums() {
-        return exceptionEnums;
+    public ResultEnums getResultEnums() {
+        return resultEnums;
     }
 
-    public void setExceptionEnums(ExceptionEnums exceptionEnums) {
-        this.exceptionEnums = exceptionEnums;
+    public void setResultEnums(ResultEnums resultEnums) {
+        this.resultEnums = resultEnums;
     }
 
     private ResponseException() {}
 
-    public ResponseException(ExceptionEnums exceptionEnums) {
-        super(exceptionEnums.getMsg());
+    public ResponseException(ResultEnums resultEnums) {
+        super(resultEnums.getMsg());
+        this.resultEnums = resultEnums;
     }
 
 }

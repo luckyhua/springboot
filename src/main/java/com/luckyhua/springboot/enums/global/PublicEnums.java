@@ -1,13 +1,13 @@
 package com.luckyhua.springboot.enums.global;
 
-import com.luckyhua.springboot.enums.ExceptionEnums;
+import com.luckyhua.springboot.enums.ResultEnums;
 
 /**
  * @author luckyhua
  * @date 2016/11/23
  * @description 全局码
  */
-public enum PublicEnums implements ExceptionEnums {
+public enum PublicEnums implements ResultEnums {
 
     USER_NO_LOGIN(1000, "请先登录后再操作!"),
     PARAMS_IS_NULL(1002, "参数不能为空!");

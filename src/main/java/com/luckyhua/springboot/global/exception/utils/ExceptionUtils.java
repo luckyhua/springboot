@@ -1,6 +1,6 @@
 package com.luckyhua.springboot.global.exception.utils;
 
-import com.luckyhua.springboot.enums.ExceptionEnums;
+import com.luckyhua.springboot.enums.ResultEnums;
 import com.luckyhua.springboot.global.exception.ResponseException;
 
 /**
@@ -10,8 +10,8 @@ import com.luckyhua.springboot.global.exception.ResponseException;
  */
 public class ExceptionUtils {
 
-    public static void throwResponseException(ExceptionEnums exceptionEnums) throws ResponseException{
-        throw new ResponseException(exceptionEnums);
+    public static void throwResponseException(ResultEnums resultEnums) throws ResponseException{
+        throw new ResponseException(resultEnums);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.luckyhua.springboot.controller;
 
+import com.luckyhua.springboot.enums.global.PublicEnums;
+import com.luckyhua.springboot.global.exception.utils.ExceptionUtils;
 import com.luckyhua.springboot.model.User;
 import com.luckyhua.springboot.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -43,6 +45,7 @@ public class UserController {
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ApiOperation(notes = "查询所有用户", value = "查询所有用户列表", httpMethod = "GET")
     public List<User> get(Integer offset, Integer limit) {
+        ExceptionUtils.throwResponseException(PublicEnums.PARAMS_IS_NULL);
         return userService.findAll(offset, limit);
     }
 
