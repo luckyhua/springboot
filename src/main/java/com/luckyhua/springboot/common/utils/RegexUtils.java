@@ -36,7 +36,7 @@ public class RegexUtils {
     public static final String CHINESE_REGEX = "^[\u4e00-\u9f5a]+$";
 
     /**
-     * 匹配正整数的正则表达式，个数限制为一个或多个
+     * 匹配正整数的正则表达式，个数限制为一个或多个(包含0)
      */
     public static final String POSITIVE_INTEGER_REGEX = "^\\d+$";
 
@@ -156,6 +156,15 @@ public class RegexUtils {
      */
     public static boolean isURL(String urlStr){
         return urlStr.matches(URL);
+    }
+
+    /**
+     * 验证给定的字符串是否是数字
+     * @param urlStr url字符串
+     * @return boolean
+     */
+    public static boolean isNumber(String urlStr) {
+        return urlStr.matches(POSITIVE_INTEGER_REGEX);
     }
 
     /**

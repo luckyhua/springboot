@@ -1,4 +1,4 @@
-package com.luckyhua.springboot.global.result.utils;
+package com.luckyhua.springboot.global.context.utils;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.logging.Log;

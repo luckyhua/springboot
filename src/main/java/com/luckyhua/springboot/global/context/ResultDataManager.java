@@ -1,6 +1,6 @@
-package com.luckyhua.springboot.global.result;
+package com.luckyhua.springboot.global.context;
 
-import com.luckyhua.springboot.global.result.utils.ReflectUtils;
+import com.luckyhua.springboot.global.context.utils.ReflectUtils;
 
 import java.beans.PropertyDescriptor;
 import java.util.HashMap;

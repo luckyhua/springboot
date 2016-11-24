@@ -1,8 +1,10 @@
-package com.luckyhua.springboot.global.result;
+package com.luckyhua.springboot.global.context.json;
 
-import com.luckyhua.springboot.enums.PublicEnums;
 import com.luckyhua.springboot.enums.ResultEnums;
+import com.luckyhua.springboot.global.context.Describle;
+import com.luckyhua.springboot.global.context.ResultDataManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.Map;
  * @date 2016/11/24
  * @description
  */
-public class ResponseUtils {
+public class ResponseInfo implements Serializable{
 
     private Integer code;
 
@@ -24,12 +26,7 @@ public class ResponseUtils {
      */
     private Map<String,Object> data = new HashMap<>();
 
-    public ResponseUtils() {
-        this.code = PublicEnums.SUCCESS.getCode();
-        this.msg = PublicEnums.SUCCESS.getMsg();
-    }
-
-    public ResponseUtils(ResultEnums resultEnums) {
+    public ResponseInfo(ResultEnums resultEnums) {
         this.code = resultEnums.getCode();
         this.msg = resultEnums.getMsg();
     }
@@ -71,7 +68,7 @@ public class ResponseUtils {
      * @param bean the field that return to app
      * @param fields
      */
-    public void putBeanData(Object bean, String ...fields){
+    public void putBeanData(Object bean, String ... fields){
         String key = ResultDataManager.getBeanName(bean);
         Map<String, Object> values = ResultDataManager.getValues(bean, fields);
         this.data.put(key, values);
@@ -84,7 +81,7 @@ public class ResponseUtils {
      * @param bean data
      * @param fields fields is bean data
      */
-    public void putBeanData(String key,Object bean,String ...fields){
+    public void putBeanData(String key,Object bean,String ... fields){
         if(bean instanceof Map){
             data.put(key, bean);
             return;
@@ -107,7 +104,7 @@ public class ResponseUtils {
      * @param inFields out json bean fields
      */
     @SuppressWarnings("unchecked")
-    public void putListData(String key, List<?> listBean, String ...inFields){
+    public void putListData(String key, List<?> listBean, String ... inFields){
 
         List<Map<String,Object>> retData = new ArrayList<>();
 
@@ -133,22 +130,17 @@ public class ResponseUtils {
         data.put(key, retData);
     }
 
-    /**
-     * not suggest to use this method,this method will return the<p>
-     * field witch not in exclude fields
-     * @param bean
-     * @param excludeFields the field not return
-     */
-    @Deprecated
-    public void putBeanDataExcludeFields(Object bean, String ...excludeFields){
-        String key = ResultDataManager.getBeanName(bean);
-        Map<String, Object> values = ResultDataManager.getValuesExcludeFields(bean, excludeFields);
-        data.put(key, values);
-    }
-
     public void putBeanDataAll(Object bean){
         String key = ResultDataManager.getBeanName(bean);
         data.put(key, bean);
     }
 
+    @Override
+    public String toString() {
+        return "ResponseInfo{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

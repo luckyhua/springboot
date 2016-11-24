@@ -1,4 +1,4 @@
-package com.luckyhua.springboot.global.result;
+package com.luckyhua.springboot.global.context;
 
 import java.util.Map;
 

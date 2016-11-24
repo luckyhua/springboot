@@ -94,7 +94,7 @@ public abstract class AssertUtils {
 
     /**
      * Assert a boolean expression, throwing {@link com.luckyhua.springboot.global.exception.ResponseException}
-     * if the test result is {@code false}.
+     * if the test context is {@code false}.
      * <pre class="code">Assert.isTrue(i &gt; 0, "The value must be greater than zero");</pre>
      *
      * @param resultEnums response info
@@ -107,8 +107,23 @@ public abstract class AssertUtils {
     }
 
     /**
+     * Assert text must be match the patter
+     * if the match the patter context false.
+     * throw new {@link com.luckyhua.springboot.global.exception.ResponseException}
+     *
+     * @param resultEnums response info
+     * @param text Assert text
+     */
+    public static void isNumber(ResultEnums resultEnums, String text) {
+        if(StringUtils.isBlank(text))
+            ExceptionUtils.throwResponseException(resultEnums);
+        if(!RegexUtils.isNumber(text))
+            ExceptionUtils.throwResponseException(resultEnums);
+    }
+
+    /**
      * Assert mobile must be match the patter
-     * if the match the patter result false.
+     * if the match the patter context false.
      * throw new {@link com.luckyhua.springboot.global.exception.ResponseException}
      *
      * @param resultEnums response info
@@ -123,7 +138,7 @@ public abstract class AssertUtils {
 
     /**
      * Assert id card must be match the patter
-     * if the match the patter result false.
+     * if the match the patter context false.
      * throw new {@link com.luckyhua.springboot.global.exception.ResponseException}
      *
      * @param resultEnums response info
@@ -139,7 +154,7 @@ public abstract class AssertUtils {
 
     /**
      * Assert tel phone must be match the patter
-     * if the match the patter result false.
+     * if the match the patter context false.
      * throw new {@link com.luckyhua.springboot.global.exception.ResponseException}
      *
      * @param resultEnums response info
@@ -154,7 +169,7 @@ public abstract class AssertUtils {
 
     /**
      * Assert zip code must be match the patter
-     * if the match the patter result false.
+     * if the match the patter context false.
      * throw new {@link com.luckyhua.springboot.global.exception.ResponseException}
      *
      * @param resultEnums response info
@@ -169,7 +184,7 @@ public abstract class AssertUtils {
 
     /**
      * Assert Chinese characters must be match the patter
-     * if the match the patter result false.
+     * if the match the patter context false.
      * throw new {@link com.luckyhua.springboot.global.exception.ResponseException}
      *
      * @param resultEnums response info
@@ -184,7 +199,7 @@ public abstract class AssertUtils {
 
     /**
      * Assert email must be match the patter
-     * if the match the patter result false.
+     * if the match the patter context false.
      * throw new {@link com.luckyhua.springboot.global.exception.ResponseException}
      *
      * @param resultEnums response info
