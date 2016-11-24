@@ -26,4 +26,5 @@ public abstract class ResponseUtils {
     public static DataGridResult buildDataGridResult(PageInfo pageInfo, List<?> data){
         return new DataGridResult(pageInfo.getTotalCount(), data);
     }
+
 }
