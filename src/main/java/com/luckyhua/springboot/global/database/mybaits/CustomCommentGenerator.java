@@ -1,4 +1,4 @@
-package com.luckyhua.springboot.common.mybaits.generator;
+package com.luckyhua.springboot.global.database.mybaits;
 
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.IntrospectedColumn;

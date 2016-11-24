@@ -8,7 +8,7 @@
 	<context id="MBG" targetRuntime="MyBatis3" defaultModelType="flat">
 
 		<!--mybaits代码生成器生成Example类替换成Criteria -->
-		<!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
+		<!--<plugin type="org.mybatis.mybaits.plugins.RenameExampleClassPlugin">-->
 			<!--<property name="searchString" value="[e|E]xample$" />-->
 			<!--<property name="replaceString" value="Criteria" />-->
 		<!--</plugin>-->
@@ -18,7 +18,7 @@
 
 
 		<!--下面的配置使得生成的model中可以使用数据库中的Comment对字段进行注释-->
-		<!--<commentGenerator type="org.mybatis.generator.internal.CustomCommentGenerator">-->
+		<!--<commentGenerator type="org.mybatis.mybaits.internal.CustomCommentGenerator">-->
 		<commentGenerator>
 			<property name="javaFileEncoding" value="UTF-8" />
 			<property name="suppressAllComments" value="true" />
