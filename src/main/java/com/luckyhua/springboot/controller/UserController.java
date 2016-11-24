@@ -4,6 +4,7 @@ import com.luckyhua.springboot.common.utils.AssertUtils;
 import com.luckyhua.springboot.enums.PublicEnums;
 import com.luckyhua.springboot.global.context.json.ResponseInfo;
 import com.luckyhua.springboot.global.context.utils.ResponseUtils;
+import com.luckyhua.springboot.global.session.SessionUtils;
 import com.luckyhua.springboot.model.User;
 import com.luckyhua.springboot.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author luckyhua
@@ -37,18 +39,21 @@ public class UserController {
             @ApiImplicitParam(name = "username", paramType = "query", dataType = "string"),
             @ApiImplicitParam(name = "psw", paramType = "query", dataType = "string")
     })
-    public User create(@RequestBody User user) {
+    public User create(@RequestBody User user, HttpServletRequest request) {
         log.info("ZGH10040: user = {}", user);
         AssertUtils.notNull(PublicEnums.PARAMS_IS_NULL, user.getName());
         userService.add(user);
+        SessionUtils.setAttribute(request, "user", user);
         return user;
     }
 
     @RequestMapping(value = "/listAll", method = RequestMethod.GET)
     @ApiOperation(notes = "查询所有用户", value = "查询所有用户列表", httpMethod = "GET")
-    public ResponseInfo get(Integer offset, Integer limit) {
+    public ResponseInfo get(Integer offset, Integer limit, HttpServletRequest request) {
+        User user = (User) SessionUtils.getAttribute(request, "user");
         ResponseInfo responseInfo = ResponseUtils.buildResponseInfo();
         responseInfo.putData("userList", userService.findAll(offset, limit));
+        responseInfo.putData("user", user);
         return responseInfo;
     }
 
