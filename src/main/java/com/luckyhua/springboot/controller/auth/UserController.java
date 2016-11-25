@@ -1,4 +1,4 @@
-package com.luckyhua.springboot.controller;
+package com.luckyhua.springboot.controller.auth;
 
 import com.luckyhua.springboot.cache.redis.RedisUtil;
 import com.luckyhua.springboot.common.utils.AssertUtils;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -33,7 +34,7 @@ public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
+    @Resource(name = "userService")
     private UserService userService;
 
     @Autowired
@@ -47,7 +48,7 @@ public class UserController {
     })
     public User create(@RequestBody User user, HttpServletRequest request) {
         log.info("ZGH10040: user = {}", user);
-        AssertUtils.notNull(PublicEnums.PARAMS_IS_NULL, user.getName());
+        AssertUtils.notNull(PublicEnums.PARAMS_IS_NULL, user.getUserName());
         userService.add(user);
         SessionUtils.setAttribute(request, "user", user);
         return user;

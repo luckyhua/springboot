@@ -1,8 +1,5 @@
 package com.luckyhua.springboot.global.security;
 
-import com.luckyhua.springboot.service.auth.RoleService;
-import com.luckyhua.springboot.service.auth.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.core.Authentication;
@@ -31,12 +28,12 @@ class CustomPermissionEvaluator implements PermissionEvaluator {
     private RoleHierarchy roleHierarchy;
 
     @Override
-    public boolean hasPermission(Authentication authentication, Object targetDomainObject, Object permission) {
-        return hasPermission(getRole(authentication), permission, targetDomainObject);
+    public boolean hasPermission(Authentication authentication, Object domain, Object permission) {
+        return hasPermission(getRole(authentication), permission, domain);
     }
 
     @Override
-    public boolean hasPermission(Authentication authentication, Serializable serializable, String targetDomainObject, Object permission) {
+    public boolean hasPermission(Authentication authentication, Serializable serializable, String domain, Object permission) {
         return false;
     }
 
@@ -59,8 +56,10 @@ class CustomPermissionEvaluator implements PermissionEvaluator {
         return highestRole;
     }
 
-    private Boolean hasPermission(String role, Object permission, Object domain) {
+    private Boolean hasPermission(String role, Object domain, Object permission) {
+
         if (permissionsMap.containsKey(role) ) {
+
             Permission userPermission = (Permission) permissionsMap.get(role);
 
             if (userPermission.getObjects().containsKey(domain.getClass().getName())){

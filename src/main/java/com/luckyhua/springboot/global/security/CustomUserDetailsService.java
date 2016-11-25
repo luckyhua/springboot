@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -26,7 +27,7 @@ import java.util.Set;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
+    @Resource(name = "userService")
     private UserService userService;
 
     @Autowired

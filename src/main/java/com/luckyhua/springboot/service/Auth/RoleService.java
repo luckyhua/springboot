@@ -12,6 +12,4 @@ public interface RoleService {
 
     List<Role> getUserRoles(Integer userId);
 
-    Boolean authorized(Integer userId, String s, String b);
-
 }
