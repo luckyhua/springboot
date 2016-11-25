@@ -1,5 +1,6 @@
 package com.luckyhua.springboot.global.security.jwt;
 
+import com.luckyhua.springboot.global.config.JHipsterProperties;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
@@ -25,15 +26,15 @@ public class TokenProvider {
     private static final String AUTHORITIES_KEY = "auth";
 
     @Autowired
-    private Security security;
+    private JHipsterProperties jHipsterProperties;
 
     private String secretKey;
     private long tokenValidityInSeconds;
 
     @PostConstruct
     public void init() {
-        this.secretKey = security.getJwt().getSecret();
-        this.tokenValidityInSeconds = 1000 * security.getJwt().getTokenValidityInSeconds();
+        this.secretKey = jHipsterProperties.getSecurity().getJwt().getSecret();
+        this.tokenValidityInSeconds = 1000 * jHipsterProperties.getSecurity().getJwt().getTokenValidityInSeconds();
         log.info("ZGH01130: token provider init secretKey = {}, tokenValidityInSeconds = {}", secretKey, tokenValidityInSeconds);
     }
 

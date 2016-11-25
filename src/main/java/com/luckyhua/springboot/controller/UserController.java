@@ -1,5 +1,6 @@
 package com.luckyhua.springboot.controller;
 
+import com.luckyhua.springboot.cache.redis.RedisUtil;
 import com.luckyhua.springboot.common.utils.AssertUtils;
 import com.luckyhua.springboot.enums.PublicEnums;
 import com.luckyhua.springboot.global.context.json.ResponseInfo;
@@ -12,6 +13,8 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,8 +33,12 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Resource(name = "userService")
     private UserService userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ApiOperation(notes = "添加用户", value = "添加一个用户", httpMethod = "POST")
@@ -55,6 +62,14 @@ public class UserController {
         responseInfo.putData("userList", userService.findAll(offset, limit));
         responseInfo.putData("user", user);
         return responseInfo;
+    }
+
+    @RequestMapping("/test")
+    @Cacheable(value = "test")
+    public String getSessionId(){
+        redisUtil.set("123", "测试");
+        String test = redisUtil.get("123").toString();
+        return test;
     }
 
 }
