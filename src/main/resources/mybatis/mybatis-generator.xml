@@ -41,21 +41,29 @@
 		</javaTypeResolver>
 
 		<!-- generate model -->
-		<javaModelGenerator targetPackage="com.luckyhua.boot.model" targetProject="src\main\java">
+		<javaModelGenerator targetPackage="com.luckyhua.springboot.model" targetProject="src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
 		<!-- generate mapper, 可以是 ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER(不知道) -->
 		<javaClientGenerator type="ANNOTATEDMAPPER"
-			targetPackage="com.luckyhua.boot.dao.mapper"
-			 implementationPackage="com.luckyhua.boot.dao.mapper.impl"
+			targetPackage="com.luckyhua.springboot.dao.mapper"
+			 implementationPackage="com.luckyhua.springboot.dao.mapper.impl"
 			targetProject="src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
 		<!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等-->
 		<table tableName="user" domainObjectName="User">
+			<generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+
+		<table tableName="user_role" domainObjectName="UserRole">
+			<generatedKey column="id" sqlStatement="MySql" identity="true"/>
+		</table>
+
+		<table tableName="role" domainObjectName="Role">
 			<generatedKey column="id" sqlStatement="MySql" identity="true"/>
 		</table>
 

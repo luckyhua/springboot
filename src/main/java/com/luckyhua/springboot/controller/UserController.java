@@ -7,7 +7,7 @@ import com.luckyhua.springboot.global.context.json.ResponseInfo;
 import com.luckyhua.springboot.global.context.utils.ResponseUtils;
 import com.luckyhua.springboot.global.session.SessionUtils;
 import com.luckyhua.springboot.model.User;
-import com.luckyhua.springboot.service.UserService;
+import com.luckyhua.springboot.service.auth.UserService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -34,7 +33,7 @@ public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    @Resource(name = "userService")
+    @Autowired
     private UserService userService;
 
     @Autowired

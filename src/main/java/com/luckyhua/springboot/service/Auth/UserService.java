@@ -1,4 +1,4 @@
-package com.luckyhua.springboot.service;
+package com.luckyhua.springboot.service.auth;
 
 import com.luckyhua.springboot.model.User;
 
@@ -10,6 +10,8 @@ import java.util.List;
  * @description
  */
 public interface UserService {
+
+    User findByUserName(String userName);
 
     /**
      * 添加一个用户
