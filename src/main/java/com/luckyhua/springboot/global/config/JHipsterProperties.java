@@ -2,6 +2,7 @@ package com.luckyhua.springboot.global.config;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
 
 import java.util.LinkedHashMap;
@@ -15,6 +16,7 @@ import java.util.Map;
  * Properties are configured in the application.yml file.
  * </p>
  */
+@Component
 @ConfigurationProperties(prefix = "jhipster", ignoreUnknownFields = false)
 public class JHipsterProperties {
 

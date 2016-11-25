@@ -58,18 +58,19 @@ public class UserController {
     @ApiOperation(notes = "查询所有用户", value = "查询所有用户列表", httpMethod = "GET")
     public ResponseInfo get(Integer offset, Integer limit, HttpServletRequest request) {
         User user = (User) SessionUtils.getAttribute(request, "user");
+        log.debug("---------------");
         ResponseInfo responseInfo = ResponseUtils.buildResponseInfo();
         responseInfo.putData("userList", userService.findAll(offset, limit));
         responseInfo.putData("user", user);
         return responseInfo;
     }
 
-    @RequestMapping("/test")
-    @Cacheable(value = "test")
-    public String getSessionId(){
+    @RequestMapping("/cache")
+    @Cacheable(value = "redisCache")
+    public String getCacheValue(){
         redisUtil.set("123", "测试");
-        String test = redisUtil.get("123").toString();
-        return test;
+        String cacheValue = redisUtil.get("123").toString();
+        return cacheValue;
     }
 
 }
