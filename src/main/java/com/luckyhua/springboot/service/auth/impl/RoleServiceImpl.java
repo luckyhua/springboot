@@ -36,9 +36,4 @@ public class RoleServiceImpl implements RoleService {
         return roleIdsSet.stream().map(id -> roleMapper.selectByPrimaryKey(id)).collect(Collectors.toList());
     }
 
-    @Override
-    public Boolean authorized(Integer userId, String s, String b) {
-        return null;
-    }
-
 }
