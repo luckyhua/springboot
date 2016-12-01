@@ -42,22 +42,18 @@ public class LogAspect {
         startTime.set(System.currentTimeMillis());
 
         // 接收到请求，记录请求内容
-        log.info("execute logAspect.doBefore()");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
         // 记录下请求内容
-        log.info("URL : {} ", request.getRequestURL().toString());
-        log.info("HTTP_METHOD : {} ", request.getMethod());
-        log.info("IP : {} ", request.getRemoteAddr());
-        log.info("CLASS_METHOD : {} . {} ", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
-        log.info("ARGS : {} ", Arrays.toString(joinPoint.getArgs()));
+        log.info("requestUrl = {}, requestMethod = {} ", request.getRequestURL().toString(), request.getMethod());
+        log.info("Enter : {}.{}() with args = {}", joinPoint.getSignature().getDeclaringTypeName(),
+                joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()));
     }
 
     @AfterReturning("logPointcut()")
     public void  doAfterReturning(JoinPoint joinPoint){
         // 处理完请求，返回内容
-        log.info("execute logAspect.doAfterReturning()");
         log.info("耗时 : {} ms", (System.currentTimeMillis() - startTime.get()));
     }
 
