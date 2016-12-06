@@ -66,6 +66,15 @@
             <version>1.4.0.RELEASE</version>
         </dependency>
 
+        <!--    devtools可以实现页面热部署（即页面修改后会立即生效，这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现），
+        实现类文件热部署（类文件修改后不会立即生效），实现对属性文件的热部署。
+        即devtools会监听classpath下的文件变动，并且会立即重启应用（发生在保存时机），注意：因为其采用的虚拟机机制，该项重启是很快的  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- spring boot integration redis -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -84,6 +93,13 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.1.1</version>
+        </dependency>
+
+        <!-- mybatis 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.6</version>
         </dependency>
 
         <!-- druid alibaba database connection pool -->
