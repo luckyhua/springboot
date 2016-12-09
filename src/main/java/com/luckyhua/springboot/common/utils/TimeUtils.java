@@ -1,70 +1,119 @@
 package com.luckyhua.springboot.common.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author luckyhua
  * @date 2016/11/23
  * @description 时间工具类
  */
-public class TimeUtils {
+public final class TimeUtils {
 
-    public static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat(DateUtils.DEFAULT_DATETIME_FORMAT_PATTERN);
-    public static final SimpleDateFormat DATE_FORMAT_DATE    = new SimpleDateFormat(DateUtils.DEFAULT_DATE_FORMAT_PATTERN);
+    // 默认时间格式
+    private static final DateTimeFormatter DEFAULT_DATETIME_FORMATTER = TimeFormat.SHORT_DATE_PATTERN_LINE.formatter;
 
-    private TimeUtils() {
-        throw new AssertionError();
+    // 无参数的构造函数,防止被实例化
+    private TimeUtils() {}
+
+    /**
+     * String 转化为 LocalDateTime
+     *
+     * @param timeStr 被转化的字符串
+     * @return LocalDateTime
+     */
+    public static LocalDateTime parseTime(String timeStr) {
+        return LocalDateTime.parse(timeStr, DEFAULT_DATETIME_FORMATTER);
     }
 
     /**
-     * long time to string
+     * String 转化为 LocalDateTime
      *
-     * @param timeInMillis timeInMillis
-     * @param dateFormat   dateFormat
+     * @param timeStr 被转化的字符串
+     * @param timeFormat 转化的时间格式
+     * @return LocalDateTime
+     */
+    public static LocalDateTime parseTime(String timeStr, TimeFormat timeFormat) {
+        return LocalDateTime.parse(timeStr, timeFormat.formatter);
+    }
+
+    /**
+     * LocalDateTime 转化为String
+     *
+     * @param time LocalDateTime
      * @return String
      */
-    public static String getTime(long timeInMillis, SimpleDateFormat dateFormat) {
-        return dateFormat.format(new Date(timeInMillis));
+    public static String parseTime(LocalDateTime time) {
+        return DEFAULT_DATETIME_FORMATTER.format(time);
     }
 
     /**
-     * long time to string, format is {@link #DEFAULT_DATE_FORMAT}
+     * LocalDateTime 时间转 String
      *
-     * @param timeInMillis time
+     * @param time LocalDateTime
+     * @param format 时间格式
      * @return String
      */
-    public static String getTime(long timeInMillis) {
-        return getTime(timeInMillis, DEFAULT_DATE_FORMAT);
+    public static String parseTime(LocalDateTime time, TimeFormat format) {
+        return format.formatter.format(time);
     }
 
     /**
-     * get current time in milliseconds
+     * 获取当前时间
      *
-     * @return long
+     * @return
      */
-    public static long getCurrentTimeInLong() {
-        return System.currentTimeMillis();
+    public static String getCurrentDateTime() {
+        return DEFAULT_DATETIME_FORMATTER.format(LocalDateTime.now());
     }
 
     /**
-     * get current time in milliseconds, format is {@link #DEFAULT_DATE_FORMAT}
+     * 获取当前时间
      *
-     * @return  String
+     * @param timeFormat 时间格式
+     * @return
      */
-    public static String getCurrentTimeInString() {
-        return getTime(getCurrentTimeInLong());
+    public static String getCurrentDateTime(TimeFormat timeFormat) {
+        return timeFormat.formatter.format(LocalDateTime.now());
     }
 
     /**
-     * get current time in milliseconds
+     * 内部枚举类
      *
-     * @param dateFormat    dateFormat
-     * @return  String
+     * @author luckyhua
+     * @date 2016/11/23
+     * @description
      */
-    public static String getCurrentTimeInString(SimpleDateFormat dateFormat) {
+    public enum TimeFormat {
+        //短时间格式 年月日
+        SHORT_DATE_PATTERN_LINE("yyyy-MM-dd"),
+        SHORT_DATE_PATTERN_SLASH("yyyy/MM/dd"),
+        SHORT_DATE_PATTERN_DOUBLE_SLASH("yyyy\\MM\\dd"),
+        SHORT_DATE_PATTERN_NONE("yyyyMMdd"),
 
-        return getTime(getCurrentTimeInLong(), dateFormat);
+        // 长时间格式 年月日时分秒
+        LONG_DATE_PATTERN_LINE("yyyy-MM-dd HH:mm:ss"),
+        LONG_DATE_PATTERN_SLASH("yyyy/MM/dd HH:mm:ss"),
+        LONG_DATE_PATTERN_DOUBLE_SLASH("yyyy\\MM\\dd HH:mm:ss"),
+        LONG_DATE_PATTERN_NONE("yyyyMMdd HH:mm:ss"),
+
+        // 长时间格式 年月日时分秒 带毫秒
+        LONG_DATE_PATTERN_WITH_MSEC_LINE("yyyy-MM-dd HH:mm:ss.SSS"),
+        LONG_DATE_PATTERN_WITH_MSEC_SLASH("yyyy/MM/dd HH:mm:ss.SSS"),
+        LONG_DATE_PATTERN_WITH_MSEC_DOUBLE_SLASH("yyyy\\MM\\dd HH:mm:ss.SSS"),
+        LONG_DATE_PATTERN_WITH_MSEC_NONE("yyyyMMdd HH:mm:ss.SSS");
+
+        private transient DateTimeFormatter formatter;
+
+        TimeFormat(String pattern) {
+            formatter = DateTimeFormatter.ofPattern(pattern);
+        }
+    }
+
+    public static void main(String[] args) {
+        //获取当前时间
+        System.out.println(TimeUtils.getCurrentDateTime());
+        System.out.println(TimeUtils.getCurrentDateTime(TimeFormat.LONG_DATE_PATTERN_LINE));
     }
 
 }
